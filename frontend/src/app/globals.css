@@ -1,5 +1,11 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import '../../public/style/light.css';
+@import '../../public/style/dark.css';
+@import '../../public/style/light-mc.css';
+@import '../../public/style/dark-mc.css';
+@import '../../public/style/light-hc.css';
+@import '../../public/style/dark-hc.css';
 
 @custom-variant dark (&:is(.dark *));
 
