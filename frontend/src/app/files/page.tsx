@@ -1,4 +1,4 @@
-import { File } from '@/lib/types'
+import { File } from '@/types/types'
 import { FileTable } from '@/components/file-table'
 import { columns } from '@/app/files/columns'
 import FileUploader from '@/components/file-uploader'

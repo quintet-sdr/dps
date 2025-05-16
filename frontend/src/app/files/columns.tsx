@@ -1,7 +1,7 @@
 'use client'
 
 import { ColumnDef } from '@tanstack/react-table'
-import { File } from '@/lib/types'
+import { File } from '@/types/types'
 import { Download } from 'lucide-react'
 
 export const columns: ColumnDef<File>[] = [

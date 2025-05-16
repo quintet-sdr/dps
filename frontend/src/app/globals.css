@@ -86,6 +86,6 @@
 
 @layer base {
   body {
-    @apply bg-foreground text-foreground;
+    @apply text-foreground bg-[#EDF1F5];
   }
 }
