@@ -1,13 +1,13 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
-import { FileModule } from './file/file.module';
-import { ChunkModule } from './chunk/chunk.module';
-import { NodeModule } from './node/node.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from './auth/auth.module';
+import { Module } from '@nestjs/common'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { UserModule } from './user/user.module'
+import { FileModule } from './file/file.module'
+import { ChunkModule } from './chunk/chunk.module'
+import { NodeModule } from './node/node.module'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { AuthModule } from './auth/auth.module'
 
 @Module({
   imports: [
@@ -26,13 +26,13 @@ import { AuthModule } from './auth/auth.module';
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
         synchronize: true,
-        entities: [__dirname + '/**/*.entity{.js,.ts}'],
+        entities: [__dirname + '/**/*.entity{.js,.ts}']
       }),
-      inject: [ConfigService],
+      inject: [ConfigService]
     }),
-    AuthModule,
+    AuthModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule {}

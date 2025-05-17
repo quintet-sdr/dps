@@ -1,15 +1,7 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
-import { ChunkService } from './chunk.service';
-import { CreateChunkDto } from './dto/create-chunk.dto';
-import { UpdateChunkDto } from './dto/update-chunk.dto';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common'
+import { ChunkService } from './chunk.service'
+import { CreateChunkDto } from './dto/create-chunk.dto'
+import { UpdateChunkDto } from './dto/update-chunk.dto'
 
 @Controller('chunk')
 export class ChunkController {
@@ -17,26 +9,26 @@ export class ChunkController {
 
   @Post()
   create(@Body() createChunkDto: CreateChunkDto) {
-    return this.chunkService.create(createChunkDto);
+    return this.chunkService.create(createChunkDto)
   }
 
   @Get()
   findAll() {
-    return this.chunkService.findAll();
+    return this.chunkService.findAll()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.chunkService.findOne(+id);
+    return this.chunkService.findOne(+id)
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateChunkDto: UpdateChunkDto) {
-    return this.chunkService.update(+id, updateChunkDto);
+    return this.chunkService.update(+id, updateChunkDto)
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.chunkService.remove(+id);
+    return this.chunkService.remove(+id)
   }
 }

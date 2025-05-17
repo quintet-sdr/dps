@@ -1,13 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()
 export class Node {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Column()
-  address: string;
+  address: string
 
   @Column()
-  status: string;
+  status: string
 }
