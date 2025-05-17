@@ -1,5 +1,15 @@
+import { IsEmail, Matches, MinLength } from 'class-validator';
+
 export class CreateUserDto {
+  @MinLength(4, { message: 'Username must be at least 4 symbols' })
   username: string;
+
+  @IsEmail()
+  @Matches(/^[\w.-]+@innopolis.university$/, {
+    message: 'Only for Innopolis users',
+  })
   email: string;
+
+  @MinLength(8, { message: 'Password must be more than 8 symbols' })
   password: string;
 }

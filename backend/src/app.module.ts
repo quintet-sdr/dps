@@ -7,6 +7,7 @@ import { ChunkModule } from './chunk/chunk.module';
 import { NodeModule } from './node/node.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -25,10 +26,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
         synchronize: true,
-        entities: [__dirname + '**/*.entity{.js, .ts}'],
+        entities: [__dirname + '/**/*.entity{.js,.ts}'],
       }),
       inject: [ConfigService],
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
