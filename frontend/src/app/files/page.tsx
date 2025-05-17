@@ -8,51 +8,13 @@ export default async function Home() {
   const filesDownload: File[] = [
     {
       id: 1,
-      name: 'DSA final 2021'
+      name: 'DSA final 2021',
+      uploaded_from: 0
     },
     {
       id: 2,
-      name: 'ITP final 2023'
-    },
-    {
-      id: 1,
-      name: 'DSA final 2021'
-    },
-    {
-      id: 2,
-      name: 'ITP final 2023'
-    },
-    {
-      id: 1,
-      name: 'DSA final 2021'
-    },
-    {
-      id: 2,
-      name: 'ITP final 2023'
-    },
-    {
-      id: 1,
-      name: 'DSA final 2021'
-    },
-    {
-      id: 2,
-      name: 'ITP final 2023'
-    },
-    {
-      id: 1,
-      name: 'DSA final 2021'
-    },
-    {
-      id: 2,
-      name: 'ITP final 2023'
-    },
-    {
-      id: 1,
-      name: 'DSA final 2021'
-    },
-    {
-      id: 2,
-      name: 'ITP final 2023'
+      name: 'ITP final 2023',
+      uploaded_from: 0
     }
   ]
 

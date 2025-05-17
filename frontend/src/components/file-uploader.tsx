@@ -11,7 +11,7 @@ import { File } from 'lucide-react'
 
 export default function FileUploader() {
   return (
-    <Card className="text-foreground bg-background w-[80%]">
+    <Card className="text-foreground w-[80%] bg-[var(--md-sys-color-surface-bright)]">
       <CardContent className="space-y-2 p-6">
         <div className="border-foreground flex flex-col items-center gap-1 rounded-lg border-2 border-dashed p-6">
           <File className="h-12 w-12" />

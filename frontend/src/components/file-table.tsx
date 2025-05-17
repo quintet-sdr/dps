@@ -20,7 +20,7 @@ export function FileTable<TData, TValue>({ columns, data }: FileTableProps<TData
   const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() })
 
   return (
-    <div className="h-[25vw] w-[35vw] overflow-scroll rounded-xl border-4 border-gray-400 bg-black p-8">
+    <div className="h-[25vw] w-[35vw] overflow-scroll rounded-xl border-4 border-gray-400 bg-[var(--md-sys-color-surface-bright)] p-8">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
