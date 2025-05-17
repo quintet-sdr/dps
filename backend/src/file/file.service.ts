@@ -1,11 +1,33 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { CreateFileDto } from './dto/create-file.dto';
-import { UpdateFileDto } from './dto/update-file.dto';
+import { Repository } from 'typeorm';
+import { File } from './entities/file.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class FileService {
-  create(createFileDto: CreateFileDto) {
-    return 'This action adds a new file';
+  constructor(
+    @InjectRepository(File)
+    private readonly fileRepository: Repository<File>,
+  ) {}
+
+  async create(createFileDto: CreateFileDto, user_id: number) {
+    const isExist = await this.fileRepository.findBy({
+      owner_id: { id: user_id },
+      filename: createFileDto.filename,
+    });
+
+    if (isExist.length) {
+      throw new BadRequestException('This file is already uploaded');
+    }
+
+    const newFile = {
+      filename: createFileDto.filename,
+      owner_id: { id: user_id },
+      uploaded_at: createFileDto.uploaded_at,
+    };
+
+    return await this.fileRepository.save(newFile);
   }
 
   findAll() {
@@ -14,10 +36,6 @@ export class FileService {
 
   findOne(id: number) {
     return `This action returns a #${id} file`;
-  }
-
-  update(id: number, updateFileDto: UpdateFileDto) {
-    return `This action updates a #${id} file`;
   }
 
   remove(id: number) {
