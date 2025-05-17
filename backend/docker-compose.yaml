@@ -1,4 +1,15 @@
 services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: always
+    ports:
+      - "8000:8001"
+
   postgres:
     image: postgres:latest
     env_file:

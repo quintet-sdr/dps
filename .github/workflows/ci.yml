@@ -1,0 +1,59 @@
+name: Continuous integration
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - run: |
+          cd backend
+          docker compose build --pull
+          docker compose up -d
+        env:
+          POSTGRES_PASSWORD: postgres
+      - run: docker ps
+      - run: |
+          cd backend
+          docker compose down
+
+  frontend-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: pnpm/action-setup@v3
+        with:
+          version: latest
+          run_install: false
+      - id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - run: |
+          cd frontend
+          pnpm install
+
+      - run: |
+          cd frontend
+          pnpm check
+
+      - run: |
+          cd frontend
+          pnpm build
+
+ 
