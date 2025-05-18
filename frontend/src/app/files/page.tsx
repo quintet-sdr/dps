@@ -10,8 +10,6 @@ export default function Home() {
   const { data: filesDownload, isLoading: isFilesLoading, error: filesError } = useDownloadedFiles()
   const { data: user, isLoading: isUserLoading, error: userError } = useUser()
   const userId = user?.id
-  console.log(user)
-  console.log(userId)
   const {
     data: filesUploaded,
     isLoading: isUploadedLoading,

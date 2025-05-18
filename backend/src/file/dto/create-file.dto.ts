@@ -5,5 +5,4 @@ export class CreateFileDto {
   @ApiProperty()
   @IsNotEmpty()
   filename: string
-
 }
