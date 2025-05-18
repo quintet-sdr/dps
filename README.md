@@ -8,28 +8,33 @@
 
 ### 🖥️ Frontend
 
-| Framework      | UI             | Styling         | Forms           | Data Fetching    | Validation     | Language       | Package Manager | Process Manager |
-|----------------|----------------|-----------------|-----------------|-----------------|----------------|----------------|-----------------|-----------------|
-| <img src="https://raw.githubusercontent.com/github/explore/main/topics/nextjs/nextjs.png" width="40" /> | <img src="https://raw.githubusercontent.com/github/explore/main/topics/react/react.png" width="40" /> | <img src="https://raw.githubusercontent.com/github/explore/main/topics/tailwind/tailwind.png" width="40" /> | <img src="https://react-hook-form.com/favicon.ico" width="40" /> | <img src="https://react-query.tanstack.com/_next/static/favicon/favicon-32x32.png" width="40" /> | <img src="https://zod.dev/favicon.ico" width="40" /> | <img src="https://www.typescriptlang.org/favicon-32x32.png" width="40" /> | <img src="https://pnpm.io/favicon.ico" width="40" /> | <img src="https://pm2.keymetrics.io/favicon.ico" width="40" /> |
-| [Next.js](https://nextjs.org/) | [React](https://reactjs.org/) | [TailwindCSS](https://tailwindcss.com/) | [react-hook-form](https://react-hook-form.com/) | [React Query](https://tanstack.com/query) | [Zod](https://zod.dev/) | [TypeScript](https://www.typescriptlang.org/) | [pnpm](https://pnpm.io/) | [PM2](https://pm2.keymetrics.io/) |
-
+[![Next.js](https://img.shields.io/badge/Frontend-Next.js-000?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/UI-React-61DAFB?logo=react&logoColor=black)](https://reactjs.org/)
+[![TailwindCSS](https://img.shields.io/badge/Style-TailwindCSS-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![shadcn/ui](https://img.shields.io/badge/UI%20Library-shadcn/ui-111827)](https://ui.shadcn.com/)
+[![TypeScript](https://img.shields.io/badge/Language-TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![react-hook-form](https://img.shields.io/badge/Form-react--hook--form-EC5990?logo=reacthookform&logoColor=white)](https://react-hook-form.com/)
+[![react-query](https://img.shields.io/badge/Data%20Fetching-React--Query-FF4154?logo=reactquery&logoColor=white)](https://tanstack.com/query)
+[![Zod](https://img.shields.io/badge/Validation-Zod-3c3c3c)](https://zod.dev/)
+[![PM2](https://img.shields.io/badge/Process%20Manager-PM2-2B037A?logo=pm2&logoColor=white)](https://pm2.keymetrics.io/)
+[![pnpm](https://img.shields.io/badge/Package%20Manager-pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/) 
 ---
 
-### 🛠️ Backend
+### 🛠️ Backend 
 
-| Framework     | ORM           | Auth           | Hashing        | Database       | Language      |
-|---------------|---------------|----------------|----------------|----------------|---------------|
-| <img src="https://raw.githubusercontent.com/github/explore/main/topics/nestjs/nestjs.png" width="40" /> | <img src="https://raw.githubusercontent.com/typeorm/typeorm/master/resources/logo_big.svg" width="40" /> | <img src="https://jwt.io/img/favicon-32x32.png" width="40" /> | <img src="https://argon2.github.io/img/favicon.ico" width="40" /> | <img src="https://raw.githubusercontent.com/github/explore/main/topics/postgresql/postgresql.png" width="40" /> | <img src="https://www.typescriptlang.org/favicon-32x32.png" width="40" /> |
-| [NestJS](https://nestjs.com/) | [TypeORM](https://typeorm.io/) | [JWT](https://jwt.io/) | [Argon2](https://github.com/P-H-C/phc-winner-argon2) | [PostgreSQL](https://www.postgresql.org/) | [TypeScript](https://www.typescriptlang.org/) |
+[![NestJS](https://img.shields.io/badge/Backend-NestJS-e0234e?logo=nestjs&logoColor=white)](https://nestjs.com/)
+[![TypeORM](https://img.shields.io/badge/ORM-TypeORM-262627?logo=typeorm&logoColor=white)](https://typeorm.io/)
+[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![JWT](https://img.shields.io/badge/Auth-JWT-000000?logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
+[![argon2](https://img.shields.io/badge/Password%20Hashing-Argon2-3c3c3c)](https://github.com/P-H-C/phc-winner-argon2)
 
 ---
 
 ### ⚙️ Deployment & Monitoring
-
-| Containerization | Proxy          | Monitoring    | Metrics        |
-|------------------|----------------|---------------|----------------|
-| <img src="https://raw.githubusercontent.com/github/explore/main/topics/docker/docker.png" width="40" /> | <img src="https://raw.githubusercontent.com/github/explore/main/topics/nginx/nginx.png" width="40" /> | <img src="https://raw.githubusercontent.com/grafana/grafana/main/docs/static/img/favicon.png" width="40" /> | <img src="https://prometheus.io/assets/prometheus_logo_grey.svg" width="40" /> |
-| [Docker](https://www.docker.com/) | [Nginx](https://nginx.org/) | [Grafana](https://grafana.com/) | [Prometheus](https://prometheus.io/) |
+[![Docker](https://img.shields.io/badge/Containerized-Docker-2496ed?logo=docker&logoColor=white)](https://www.docker.com/)
+[![Grafana](https://img.shields.io/badge/Monitoring-Grafana-F46800?logo=grafana&logoColor=white)](https://grafana.com/)
+[![Prometheus](https://img.shields.io/badge/Monitoring-Prometheus-E6522C?logo=prometheus&logoColor=white)](https://prometheus.io/)
+[![Nginx](https://img.shields.io/badge/Proxy-Nginx-009639?logo=nginx&logoColor=white)](https://nginx.org/)
 
 ---
 
@@ -55,26 +60,27 @@ This system was developed as part of the System & Network Administration course 
                          │ HTTP
                          ▼
                    ┌────────────┐
-                   │  Backend   │  ← NestJS (API Gateway)
+                   │   NGINX    │  ← Reverse Proxy (routes requests to Backend, Frontend, Sharding)
                    └─────┬──────┘
-                         │ gRPC/HTTP
-                         ▼
-                ┌──────────────────┐
-                │  Sharding Nodes  │  ← Java microservices (Coming Soon)
-                └──────────────────┘
                          │
-                         ▼
-                   File System
-                  ┌────────────┐
-                  │  NGINX     │  ← Reverse proxy
-                  └─────┬──────┘
-                        │
-         ┌────────────┐ └───────────────────────────┐
-         │ Prometheus │ ───── metrics scraping      │
-         └────┬───────┘                             ▼
-              │                                 ┌────────────┐
-              └──────────────────────────────▶ │  Grafana    │
-                                                └────────────┘
+         ┌───────────────┬───────────────┐
+         ▼               ▼               ▼
+  ┌────────────┐  ┌────────────┐  ┌──────────────┐
+  │  Backend   │  │  Frontend  │  │ Sharding Node│  ← Java microservices (Coming Soon)
+  └─────┬──────┘  └────────────┘  └──────────────┘
+        │
+        ▼
+  File Storage
+        │
+        ▼
+  ┌────────────┐
+  │ Prometheus │  ← Metrics scraping
+  └─────┬──────┘
+        │
+        ▼
+  ┌────────────┐
+  │  Grafana   │  ← Visualization Dashboard
+  └────────────┘
 ````
 
 ---
