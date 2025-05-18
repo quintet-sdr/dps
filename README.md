@@ -60,26 +60,27 @@ This system was developed as part of the System & Network Administration course 
                          │ HTTP
                          ▼
                    ┌────────────┐
-                   │  Backend   │  ← NestJS (API Gateway)
+                   │   NGINX    │  ← Reverse Proxy (routes requests to Backend, Frontend, Sharding)
                    └─────┬──────┘
-                         │ gRPC/HTTP
-                         ▼
-                ┌──────────────────┐
-                │  Sharding Nodes  │  ← Java microservices (Coming Soon)
-                └──────────────────┘
                          │
-                         ▼
-                   File System
-                  ┌────────────┐
-                  │  NGINX     │  ← Reverse proxy
-                  └─────┬──────┘
-                        │
-         ┌────────────┐ └───────────────────────────┐
-         │ Prometheus │ ───── metrics scraping      │
-         └────┬───────┘                             ▼
-              │                                 ┌────────────┐
-              └──────────────────────────────▶ │  Grafana    │
-                                                └────────────┘
+         ┌───────────────┬───────────────┐
+         ▼               ▼               ▼
+  ┌────────────┐  ┌────────────┐  ┌──────────────┐
+  │  Backend   │  │  Frontend  │  │ Sharding Node│  ← Java microservices (Coming Soon)
+  └─────┬──────┘  └────────────┘  └──────────────┘
+        │
+        ▼
+  File Storage
+        │
+        ▼
+  ┌────────────┐
+  │ Prometheus │  ← Metrics scraping
+  └─────┬──────┘
+        │
+        ▼
+  ┌────────────┐
+  │  Grafana   │  ← Visualization Dashboard
+  └────────────┘
 ````
 
 ---
