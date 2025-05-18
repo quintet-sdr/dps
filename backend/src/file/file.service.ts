@@ -23,10 +23,13 @@ export class FileService {
       throw new BadRequestException('This file is already uploaded')
     }
 
-    const newFile = {
+    const owner = await this.fileRepository.manager.findOne('User', { where: { id: user_id } })
+    if (!owner) throw new BadRequestException('User not found')
+
+    const newFile = this.fileRepository.create({
       filename: createFileDto.filename,
-      owner_id: { id: user_id }
-    }
+      owner_id: owner
+    })
 
     return await this.fileRepository.save(newFile)
   }
