@@ -1,0 +1,37 @@
+name: Continuous deployment
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          ssh -vvv -T ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} echo "Успех!"
+
+      - run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+          cd ${{ secrets.BACKEND_PATH }} && \
+          git config pull.rebase true && \
+          git pull && \
+          docker compose down && \
+          docker compose build --pull \
+          docker compose up -d"
+
+      - run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd ${{ secrets.FRONTEND_PATH }} && git pull && export PATH=$PATH:/root/.local/share/pnpm/ && pnpm install && pnpm build && pm2 restart frontend || pm2 start pnpm --name frontend -- start"
