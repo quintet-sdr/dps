@@ -10,7 +10,7 @@ export const columns: ColumnDef<File>[] = [
     header: 'ID'
   },
   {
-    accessorKey: 'name',
+    accessorKey: 'filename',
     header: 'File name'
   },
   {

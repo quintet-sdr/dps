@@ -30,8 +30,13 @@ export class FileService {
     return await this.fileRepository.save(newFile)
   }
 
-  findAll() {
-    return `This action returns all file`
+  async findAll() {
+    const files = await this.fileRepository.find({ relations: ['owner_id'] })
+    const result = files.map((file) => ({
+      ...file,
+      owner_id: file.owner_id?.id
+    }))
+    return { files: result }
   }
 
   findOne(id: number) {

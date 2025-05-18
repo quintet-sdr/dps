@@ -2,8 +2,9 @@ import { z } from 'zod'
 
 export type File = {
   id: number
-  name: string
-  uploaded_from: number
+  filename: string
+  uploaded_at: string
+  owner_id: number
 }
 
 export interface IUser {

@@ -9,10 +9,8 @@ export async function getOneUser() {
 
   if (!res.ok) {
     const error: ApiError = await res.json()
-    console.log(error)
     throw new Error(error.message || 'Failed to fetch user')
   }
-  const data = await res.json()
-  console.log(data)
-  return data
+
+  return (await res.json()) as IUser
 }

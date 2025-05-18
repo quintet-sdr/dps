@@ -1,0 +1,17 @@
+import { ApiError, File } from '@/types/types'
+
+export async function getFiles() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/file`, {
+    method: 'GET',
+    headers: { 'Content-type': 'application/json' },
+    credentials: 'include'
+  })
+
+  if (!res.ok) {
+    const error: ApiError = await res.json()
+    throw new Error(error.message || 'Failed to fetch files')
+  }
+
+  const data = await res.json()
+  return data.files as File[]
+}

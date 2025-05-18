@@ -3,6 +3,7 @@ import { FileService } from './file.service'
 import { CreateFileDto } from './dto/create-file.dto'
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard'
 
+@UseGuards(JwtAuthGuard)
 @Controller('file')
 export class FileController {
   constructor(private readonly fileService: FileService) {}
