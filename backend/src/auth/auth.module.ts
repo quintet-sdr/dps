@@ -7,6 +7,7 @@ import { LocalStrategy } from './strategies/local.strategy'
 import { JwtModule } from '@nestjs/jwt'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { JwtStrategy } from './strategies/jwt.strategy'
+import { makeCounterProvider } from '@willsoto/nestjs-prometheus'
 
 @Module({
   imports: [
@@ -22,6 +23,22 @@ import { JwtStrategy } from './strategies/jwt.strategy'
     })
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy]
+  providers: [
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
+    makeCounterProvider({
+      name: 'auth_login_attempts_total',
+      help: 'Total number of login attempts'
+    }),
+    makeCounterProvider({
+      name: 'auth_login_success_total',
+      help: 'Total number of successful logins'
+    }),
+    makeCounterProvider({
+      name: 'auth_login_failed_total',
+      help: 'Total number of failed logins'
+    })
+  ]
 })
 export class AuthModule {}

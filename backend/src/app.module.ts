@@ -8,6 +8,7 @@ import { NodeModule } from './node/node.module'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { AuthModule } from './auth/auth.module'
+import { PrometheusModule } from '@willsoto/nestjs-prometheus'
 
 @Module({
   imports: [
@@ -30,7 +31,11 @@ import { AuthModule } from './auth/auth.module'
       }),
       inject: [ConfigService]
     }),
-    AuthModule
+    AuthModule,
+    PrometheusModule.register({
+      path: '/metrics',
+      defaultLabels: { enabled: true }
+    })
   ],
   controllers: [AppController],
   providers: [AppService]
