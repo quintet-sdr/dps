@@ -31,3 +31,13 @@ export async function loginUser(data: IUser) {
 
   return res.json()
 }
+
+export async function logoutUser() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/auth/logout`, {
+    method: 'POST',
+    credentials: 'include'
+  })
+  if (!res.ok) {
+    throw new Error('Logout failed')
+  }
+}
