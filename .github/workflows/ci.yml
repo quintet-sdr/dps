@@ -7,6 +7,10 @@ on:
 jobs:
   backend-ci:
     runs-on: ubuntu-latest
+    env:
+      POSTGRES_USER: ${{ secrets.DB_USER }}
+      POSTGRES_DB: ${{ secrets.DB_NAME }}
+      POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-buildx-action@v3
@@ -14,10 +18,6 @@ jobs:
           cd backend
           docker compose build --pull
           docker compose up -d
-        env:
-          POSTGRES_USER: ${{ secrets.DB_USER }}  
-          POSTGRES_DB: ${{ secrets.DB_NAME }}  
-          POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
       - run: docker ps
       - run: |
           cd backend
@@ -38,24 +38,18 @@ jobs:
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
       - uses: actions/cache@v4
         with:
           path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
       - run: |
           cd frontend
           pnpm install
-
       - run: |
           cd frontend
           pnpm check
-
       - run: |
           cd frontend
           pnpm build
-
- 
