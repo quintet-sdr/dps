@@ -22,7 +22,6 @@ export default function Home() {
   if (!user) return <div>Нет данных о пользователе</div>
   if (uploadedError) return <div>Ошибка загрузки файлов пользователя: {uploadedError.message}</div>
 
-  console.log(filesUploaded)
   return (
     <>
       <HeaderAuth user={user} />

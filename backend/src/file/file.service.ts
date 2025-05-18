@@ -25,8 +25,7 @@ export class FileService {
 
     const newFile = {
       filename: createFileDto.filename,
-      owner_id: { id: user_id },
-      uploaded_at: createFileDto.uploaded_at
+      owner_id: { id: user_id }
     }
 
     return await this.fileRepository.save(newFile)
