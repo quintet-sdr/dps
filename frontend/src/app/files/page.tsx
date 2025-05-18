@@ -32,11 +32,11 @@ export default function Home() {
       <main className="flex h-screen w-screen flex-col items-center justify-center space-y-8">
         <section className="flex w-[80%] flex-row items-center justify-around gap-8">
           <div className="flex flex-col items-center space-y-2">
-            <h3 className="text-background text-3xl">Files to download</h3>
+            <h3 className="text-background text-3xl font-semibold">Files to download</h3>
             <FileTable columns={columns} data={filesDownload} />
           </div>
           <div className="flex flex-col items-center space-y-2">
-            <h3 className="text-background text-3xl">Your uploaded files</h3>
+            <h3 className="text-background text-3xl font-semibold">Your uploaded files</h3>
             <FileTable columns={columns} data={filesDownload} />
           </div>
         </section>

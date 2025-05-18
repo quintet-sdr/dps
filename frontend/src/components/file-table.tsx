@@ -20,14 +20,14 @@ export function FileTable<TData, TValue>({ columns, data }: FileTableProps<TData
   const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() })
 
   return (
-    <div className="h-[25vw] w-[35vw] overflow-scroll rounded-xl border-4 border-gray-400 bg-[var(--md-sys-color-surface-bright)] p-8">
+    <div className="text-background border-background h-[25vw] w-[35vw] overflow-scroll rounded-xl border-2 bg-white/1 p-8 backdrop-blur-sm">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className="text-2xl">
+            <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="text-background text-2xl">
                     {header.isPlaceholder
                       ? null
                       : flexRender(header.column.columnDef.header, header.getContext())}

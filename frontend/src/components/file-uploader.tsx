@@ -11,9 +11,9 @@ import { File } from 'lucide-react'
 
 export default function FileUploader() {
   return (
-    <Card className="text-foreground w-[80%] bg-[var(--md-sys-color-surface-bright)]">
+    <Card className="border-background text-background w-[80%] border-2 bg-white/1 p-8 backdrop-blur-sm">
       <CardContent className="space-y-2 p-6">
-        <div className="border-foreground flex flex-col items-center gap-1 rounded-lg border-2 border-dashed p-6">
+        <div className="border-background flex flex-col items-center gap-1 rounded-lg border-2 border-dashed p-6">
           <File className="h-12 w-12" />
           <span className="text-sm font-medium">Drag and drop a file or click to browse</span>
           <span className="text-xs">PDF, image, video, or audio</span>
@@ -26,7 +26,10 @@ export default function FileUploader() {
         </div>
       </CardContent>
       <CardFooter>
-        <Button size="lg" className="text-background w-full">
+        <Button
+          size="lg"
+          className="text-background hover:border-background w-full border border-transparent bg-[#edfff1] text-lg hover:bg-[#EDF1F8]"
+        >
           Upload
         </Button>
       </CardFooter>
