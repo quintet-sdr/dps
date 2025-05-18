@@ -22,7 +22,6 @@ import { makeCounterProvider } from '@willsoto/nestjs-prometheus'
   controllers: [UserController],
   providers: [
     UserService,
-    // Метрики для сервиса
     makeCounterProvider({
       name: 'user_register_attempts_total',
       help: 'Total number of user registration attempts'
@@ -35,7 +34,6 @@ import { makeCounterProvider } from '@willsoto/nestjs-prometheus'
       name: 'user_register_failed_total',
       help: 'Total number of failed user registrations'
     }),
-    // Метрики для контроллера
     makeCounterProvider({
       name: 'user_controller_register_calls_total',
       help: 'Total number of register endpoint calls'
