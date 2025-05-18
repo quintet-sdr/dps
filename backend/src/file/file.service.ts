@@ -1,9 +1,11 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common'
+import { BadRequestException, Inject, Injectable, UseGuards } from '@nestjs/common'
 import { CreateFileDto } from './dto/create-file.dto'
 import { Repository } from 'typeorm'
 import { File } from './entities/file.entity'
 import { InjectRepository } from '@nestjs/typeorm'
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard'
 
+@UseGuards(JwtAuthGuard)
 @Injectable()
 export class FileService {
   constructor(
@@ -39,8 +41,15 @@ export class FileService {
     return { files: result }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} file`
+  async findOne(userId: number) {
+    const usersFiles = await this.fileRepository.find({
+      where: { owner_id: { id: userId } },
+      relations: ['owner_id']
+    })
+    return usersFiles.map((file) => ({
+      ...file,
+      owner_id: file.owner_id?.id
+    }))
   }
 
   remove(id: number) {

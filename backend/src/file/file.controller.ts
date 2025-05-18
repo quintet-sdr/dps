@@ -21,8 +21,8 @@ export class FileController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.fileService.findOne(+id)
+  findOne(@Param('id') owner_id: number) {
+    return this.fileService.findOne(+owner_id)
   }
 
   @Delete(':id')

@@ -4,10 +4,10 @@ import { columns } from '@/app/files/columns'
 import FileUploader from '@/components/file-uploader'
 import HeaderAuth from '@/components/header-auth'
 import { useUser } from '@/lib/queries/user'
-import { useFiles } from '@/lib/queries/file'
+import { useDownloadedFiles } from '@/lib/queries/file'
 
 export default function Home() {
-  const { data: filesDownload, isLoading: isFilesLoading, error: filesError } = useFiles()
+  const { data: filesDownload, isLoading: isFilesLoading, error: filesError } = useDownloadedFiles()
   const { data: user, isLoading: isUserLoading, error: userError } = useUser()
 
   if (isFilesLoading || isUserLoading) return <div>Загрузка...</div>
