@@ -1,7 +1,7 @@
 import { ApiError, IUser } from '@/types/types'
 
 export async function getOneUser() {
-  const res = await fetch(`http://localhost:8000/api/auth/profile`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/auth/profile`, {
     method: 'GET',
     headers: { 'Content-type': 'application/json' },
     credentials: 'include'

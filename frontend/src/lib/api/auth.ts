@@ -1,7 +1,7 @@
 import { ApiError, IUser } from '@/types/types'
 
 export async function registerUser(data: IUser) {
-  const res = await fetch('http://localhost:8000/api/user/register', {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/user/register`, {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify(data),
@@ -17,7 +17,7 @@ export async function registerUser(data: IUser) {
 }
 
 export async function loginUser(data: IUser) {
-  const res = await fetch('http://localhost:8000/api/auth/login', {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/auth/login`, {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify(data),
