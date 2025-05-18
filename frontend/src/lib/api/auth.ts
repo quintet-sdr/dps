@@ -13,7 +13,7 @@ export async function registerUser(data: IUser) {
     throw new Error(error.message || 'Registration failed')
   }
 
-  return res.json()
+  return await loginUser({ email: data.email, password: data.password })
 }
 
 export async function loginUser(data: IUser) {
