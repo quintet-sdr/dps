@@ -3,10 +3,16 @@ import { AuthService } from './auth.service'
 import { LocalAuthGuard } from './guards/local-auth.guard'
 import { JwtAuthGuard } from './guards/jwt-auth.guard'
 import { Response } from 'express'
+import { InjectMetric } from '@willsoto/nestjs-prometheus'
+import { Counter } from 'prom-client'
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    @InjectMetric('auth_logout_total')
+    private readonly logoutCounter: Counter<string>
+  ) {}
 
   @Post('login')
   @UseGuards(LocalAuthGuard)
@@ -26,5 +32,12 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   async getProfile(@Request() req) {
     return req.user
+  }
+
+  @Post('logout')
+  async logout(@Res() res: Response) {
+    this.logoutCounter.inc()
+    res.clearCookie('token')
+    res.json({ message: 'Logged out' })
   }
 }

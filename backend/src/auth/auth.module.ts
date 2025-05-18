@@ -38,6 +38,10 @@ import { makeCounterProvider } from '@willsoto/nestjs-prometheus'
     makeCounterProvider({
       name: 'auth_login_failed_total',
       help: 'Total number of failed logins'
+    }),
+    makeCounterProvider({
+      name: 'auth_logout_total',
+      help: 'Total number of logouts'
     })
   ]
 })
