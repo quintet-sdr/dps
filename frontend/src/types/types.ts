@@ -6,9 +6,17 @@ export type File = {
   uploaded_from: number
 }
 
-export interface User {
-  user_id: number
-  username: string
+export interface IUser {
+  user_id?: number
+  username?: string
+  email: string
+  password?: string
+}
+
+export type ApiError = {
+  message: string
+  status?: number
+  details?: unknown
 }
 
 export const formSchema = z.object({
@@ -23,3 +31,15 @@ export const formSchema = z.object({
 })
 
 export type FormSchema = z.infer<typeof formSchema>
+
+export const loginSchema = z.object({
+  email: z
+    .string()
+    .email({ message: 'Invalid email ' })
+    .regex(/^[\w.-]+@innopolis\.university$/, {
+      message: 'Only for Innopolis University students'
+    }),
+  password: z.string().min(8, { message: 'Password must be at least 8 characters.' })
+})
+
+export type LoginSchema = z.infer<typeof loginSchema>

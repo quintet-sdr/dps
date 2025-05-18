@@ -1,0 +1,33 @@
+import { ApiError, IUser } from '@/types/types'
+
+export async function registerUser(data: IUser) {
+  const res = await fetch('http://localhost:8000/api/user/register', {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify(data),
+    credentials: 'include'
+  })
+
+  if (!res.ok) {
+    const error: ApiError = await res.json()
+    throw new Error(error.message || 'Registration failed')
+  }
+
+  return res.json()
+}
+
+export async function loginUser(data: IUser) {
+  const res = await fetch('http://localhost:8000/api/auth/login', {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify(data),
+    credentials: 'include'
+  })
+
+  if (!res.ok) {
+    const error: ApiError = await res.json()
+    throw new Error(error.message || 'Login failed')
+  }
+
+  return res.json()
+}

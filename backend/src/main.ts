@@ -18,7 +18,10 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, documentFactory)
 
   app.setGlobalPrefix('api')
-  app.enableCors()
+  app.enableCors({
+    origin: 'http://localhost:3001',
+    credentials: true
+  })
   await app.listen(process.env.PORT ?? 8000)
 }
 bootstrap()

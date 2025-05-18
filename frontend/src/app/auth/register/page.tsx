@@ -1,11 +1,13 @@
 'use client'
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { formSchema, FormSchema } from '@/types/types'
+import { ApiError, formSchema, FormSchema } from '@/types/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Eye, EyeOff } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { registerUser } from '@/lib/api/auth'
 
 function Register() {
   const {
@@ -15,9 +17,21 @@ function Register() {
   } = useForm<FormSchema>({ resolver: zodResolver(formSchema) })
 
   const [show, setShow] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const router = useRouter()
 
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
-    console.log(data)
+    try {
+      await registerUser(data)
+      router.push('/files')
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setError(e.message)
+      } else {
+        setError('Registration failed')
+      }
+    }
   }
 
   return (
@@ -75,6 +89,7 @@ function Register() {
           <Button type="submit" variant="outline" className="text-foreground h-12 w-90 text-lg">
             Sing up
           </Button>
+          {error && <p className="text-left text-sm text-red-400">{error}</p>}
         </form>
       </section>
     </main>

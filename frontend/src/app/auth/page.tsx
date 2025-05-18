@@ -2,29 +2,41 @@
 
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { formSchema, FormSchema } from '@/types/types'
+import { loginSchema, LoginSchema } from '@/types/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@/components/ui/input'
 import { Eye, EyeOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
+import { loginUser } from '@/lib/api/auth'
 
 function Auth() {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<FormSchema>({ resolver: zodResolver(formSchema) })
+  } = useForm<LoginSchema>({ resolver: zodResolver(loginSchema) })
 
   const [show, setShow] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
 
   const router = useRouter()
+
+  const onSubmit = async (data: LoginSchema) => {
+    try {
+      await loginUser(data)
+      router.push('/files')
+    } catch (e: unknown) {
+      if (e instanceof Error) setError(e.message)
+      else setError('Login failed')
+    }
+  }
 
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-center space-y-8">
       <section className="border-background flex flex-col items-center space-y-8 rounded-4xl border-2 bg-white/1 p-20 backdrop-blur-sm">
         <h1 className="text-background text-center text-5xl font-semibold">Log in</h1>
-        <form className="flex flex-col items-center space-y-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center space-y-5">
           <div className="w-90 space-y-2">
             {errors.email && (
               <p className="text-left text-sm text-red-400">{errors.email.message}</p>
@@ -60,6 +72,7 @@ function Auth() {
           <Button type="submit" variant="outline" className="text-foreground h-12 w-90 text-lg">
             Log in
           </Button>
+          {error && <p className="text-left text-sm text-red-400">{error}</p>}
         </form>
         <hr className="text-background w-90" />
         <section className="text-background flex flex-col space-y-4">
