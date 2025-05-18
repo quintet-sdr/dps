@@ -8,7 +8,7 @@ export type File = {
 }
 
 export interface IUser {
-  user_id?: number
+  id?: number
   username?: string
   email: string
   password?: string

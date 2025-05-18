@@ -41,7 +41,7 @@ export class FileService {
     return { files: result }
   }
 
-  async findOne(userId: number) {
+  async findForUser(userId: number) {
     const usersFiles = await this.fileRepository.find({
       where: { owner_id: { id: userId } },
       relations: ['owner_id']
