@@ -42,7 +42,7 @@ export class UserService {
   }
 
   async findOne(email: string) {
-    return await this.userRepository.findOne({ where: { email } })
+    return this.userRepository.findOne({ where: { email } })
   }
 
   remove(id: number) {
