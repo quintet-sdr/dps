@@ -1,8 +1,9 @@
 import React from 'react'
 import { Github, User } from 'lucide-react'
 import Link from 'next/link'
+import { IUser } from '@/types/types'
 
-function HeaderAuth() {
+function HeaderAuth({ user }: { user: IUser }) {
   return (
     <header className="text-background flex w-screen flex-row items-center justify-between px-30 py-6">
       <address>
@@ -13,7 +14,7 @@ function HeaderAuth() {
         </div>
       </address>
       <div className="flex flex-row items-center space-x-2">
-        <span className="text-lg font-semibold">Username</span>
+        <span className="text-lg font-semibold">{user.username}</span>
         <User size={50} />
       </div>
     </header>
