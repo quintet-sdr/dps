@@ -10,12 +10,13 @@ export default function Home() {
   const { data: filesDownload, isLoading: isFilesLoading, error: filesError } = useDownloadedFiles()
   const { data: user, isLoading: isUserLoading, error: userError } = useUser()
   const userId = user?.id
+  console.log(user)
+  console.log(userId)
   const {
     data: filesUploaded,
     isLoading: isUploadedLoading,
     error: uploadedError
   } = useUsersFiles(userId as number)
-
   if (isFilesLoading || isUserLoading || isUploadedLoading) return <div>Загрузка...</div>
   if (filesError) return <div>Ошибка загрузки файлов: {filesError.message}</div>
   if (userError) return <div>Ошибка загрузки пользователя: {userError.message}</div>
