@@ -118,30 +118,6 @@ The backend implements:
 
 ---
 
-## 🧪 Testing
-
-Backend:
-
-```bash
-# Unit tests
-pnpm run test
-
-# E2E tests
-pnpm run test:e2e
-
-# Coverage
-pnpm run test:cov
-```
-
-Frontend:
-
-```bash
-# If test setup exists:
-pnpm run test
-```
-
----
-
 ## 🚀 Deployment
 
 Backend, Sharding Node, and Proxy are containerized.
