@@ -74,7 +74,7 @@ pnpm run start:dev
 # Start in prod
 pnpm run start:prod
 ```
-
+Access by default: [http://localhost:8000](http://localhost:8000)
 ---
 
 ## 🌐 Frontend (Next.js)
