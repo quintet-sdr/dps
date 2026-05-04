@@ -51,57 +51,7 @@ This system was developed as part of the System & Network Administration course 
 
 ---
 
-## 🏗️ System Architecture
-
-```plaintext
-                   ┌────────────┐
-                   │  Frontend  │  ← Next.js Web UI
-                   └─────┬──────┘
-                         │ HTTP
-                         ▼
-                   ┌────────────┐
-                   │   NGINX    │  ← Reverse Proxy (routes requests to Backend, Frontend, Sharding)
-                   └─────┬──────┘
-                         │
-         ┌───────────────┬───────────────┐
-         ▼               ▼               ▼
-  ┌────────────┐  ┌────────────┐  ┌──────────────┐
-  │  Backend   │  │  Frontend  │  │ Sharding Node│  ← Java microservices (Coming Soon)
-  └─────┬──────┘  └────────────┘  └──────────────┘
-        │
-        ▼
-  File Storage
-        │
-        ▼
-  ┌────────────┐
-  │ Prometheus │  ← Metrics scraping
-  └─────┬──────┘
-        │
-        ▼
-  ┌────────────┐
-  │  Grafana   │  ← Visualization Dashboard
-  └────────────┘
-````
-
----
-
-## 📂 Project Structure
-
-```plaintext
-dps/
-├── backend/            # NestJS backend server
-├── frontend/           # Next.js frontend client
-├── sharding/           # Java-based sharding node (Coming Soon)
-├── watchproxy/         # NGINX config, Prometheus & Grafana
-├── .github/            # CI/CD workflows
-├── README.md           # ← you're here
-```
-
----
-
 ## ⚙️ Backend (NestJS)
-
-Located in: `dps/backend`
 
 ### Features
 
@@ -125,15 +75,9 @@ pnpm run start:dev
 pnpm run start:prod
 ```
 
-### API Docs
-
-Visit: [http://45.156.22.249/docs](http://45.156.22.249/docs) — auto-generated Swagger UI proxied via NGINX
-
 ---
 
 ## 🌐 Frontend (Next.js)
-
-Located in: `dps/frontend`
 
 ### Features
 
@@ -151,7 +95,7 @@ pnpm install
 pnpm dev
 ```
 
-Open [http://45.156.22.249](http://45.156.22.249) for production or [http://localhost:3000](http://localhost:3000) in development.
+Access by default: [http://localhost:3001](http://localhost:3001)
 
 ---
 
@@ -221,8 +165,8 @@ docker-compose up --build
 
 ## 📊 Monitoring
 
-* Prometheus: [http://45.156.22.249/prometheus](http://45.156.22.249/prometheus)
-* Grafana: [http://45.156.22.249/grafana](http://45.156.22.249/grafana)
+* Prometheus: [http://localhost:9090](http://localhost:9090)
+* Grafana: [http://localhost:3000](http://localhost:3000)
 
 ---
 
